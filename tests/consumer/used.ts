@@ -147,6 +147,9 @@ test("can submit used car lead", async t => {
   console.log(test_data);
 });
 
+fixture("Used Car Lead Submission")
+  .page("https://www.google.com/");
+
 test("send Data to Sumo", async t => {
   (async () => {
     try{
