@@ -8,6 +8,7 @@ export let test_data = {
     test_execution_time: 0,
     first_file_execution_time: 0,
     second_file_execution_time: 0,
-    first_command_execution_time: 0
+    first_command_execution_time: 0,
+    platformVersion: process.env.PLATFORM_VERSION || 'default-value'
 };
   
