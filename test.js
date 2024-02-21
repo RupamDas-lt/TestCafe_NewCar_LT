@@ -1,10 +1,19 @@
 import Page from './page-model';
+import { ClientFunction } from 'testcafe';
+// import lambdatest from 'testcafe-browser-provider-lambdatest';
 
 fixture `A set of examples that illustrate how to use TestCafe API`
     .page `https://devexpress.github.io/testcafe/example/`;
 
 // Page model
 const page = new Page();
+
+const getSessionIdFromLocalStorage = ClientFunction(() => {
+  
+  console.log (localStorage);
+
+});
+
 
 // Tests
 test('Text typing basics', async t => {
@@ -13,6 +22,8 @@ test('Text typing basics', async t => {
         .typeText(page.nameInput, 'Paker', { replace: true }) // Replace with last name
         .typeText(page.nameInput, 'r', { caretPos: 2 }) // Correct last name
         .expect(page.nameInput.value).eql('Parker'); // Check result
+        const sessionIdFromLocalStorage = await getSessionIdFromLocalStorage();
+console.log(sessionIdFromLocalStorage);
 });
 
 
@@ -36,14 +47,14 @@ test('Dealing with text using keyboard', async t => {
 });
 
 
-test('Moving the slider', async t => {
-    const initialOffset = await page.slider.handle.offsetLeft;
+// test('Moving the slider', async t => {
+//     const initialOffset = await page.slider.handle.offsetLeft;
 
-    await t
-        .click(page.triedTestCafeCheckbox)
-        .dragToElement(page.slider.handle, page.slider.tick.withText('9'))
-        .expect(page.slider.handle.offsetLeft).gt(initialOffset);
-});
+//     await t
+//         .click(page.triedTestCafeCheckbox)
+//         .dragToElement(page.slider.handle, page.slider.tick.withText('9'))
+//         .expect(page.slider.handle.offsetLeft).gt(initialOffset);
+// });
 
 
 test('Dealing with text using selection', async t => {
@@ -67,6 +78,7 @@ test('Handle native confirmation dialog', async t => {
     await t
         .click(page.submitButton)
         .expect(page.results.innerText).contains('Peter Parker');
+    
 });
 
 

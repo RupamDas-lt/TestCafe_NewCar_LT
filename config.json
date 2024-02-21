@@ -3,6 +3,10 @@
         "build": "TestCafe Demo",
         "network": true,
         "visual": true,
-        "resolution": "1024x768"
+        "resolution": "1024x768",
+        "goog:chromeOptions":{
+            "args":["-test-third-party-cookie-phaseout"]
+
+        }
     }
 }
